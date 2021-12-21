@@ -29,6 +29,8 @@ export default class UsersController {
     user.merge(data)
 
     await user.save()
+
+    return data
   }
 
   public async destroy({ params }: HttpContextContract) {
