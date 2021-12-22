@@ -18,7 +18,6 @@ export default class UsersController {
 
   public async show({ params }: HttpContextContract) {
     const user = await User.findOrFail(params.id)
-
     return user
   }
 

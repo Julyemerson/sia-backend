@@ -9,7 +9,7 @@ export default class Company extends BaseModel {
   public name: string
 
   @column()
-  public CNPJ: string
+  public cnpj: string
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

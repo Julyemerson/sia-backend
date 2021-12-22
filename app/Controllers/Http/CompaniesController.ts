@@ -9,21 +9,20 @@ export default class CompaniesController {
   }
 
   public async store({ request }: HttpContextContract) {
-    const data = request.only(['name', 'CNPJ'])
+    const data = request.only(['name', 'cnpj'])
     const company = await Company.create(data)
 
     return company
   }
 
   public async show({ params }: HttpContextContract) {
-    const user = await Company.findOrFail(params.id)
-
-    return user
+    const company = await Company.findOrFail(params.id)
+    return company
   }
 
   public async update({ params, request }: HttpContextContract) {
     const company = await Company.findOrFail(params.id)
-    const data = request.only(['name', 'CNPJ'])
+    const data = request.only(['name', 'cnpj'])
 
     company.merge(data)
     await company.save()
