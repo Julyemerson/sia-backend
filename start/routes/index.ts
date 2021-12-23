@@ -19,10 +19,10 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
+import './users'
+import './companies'
+import './auth'
 
 Route.get('/', async () => {
   return { hello: 'world' }
 })
-
-Route.resource('/users', 'UsersController').apiOnly()
-Route.resource('/companies', 'CompaniesController').apiOnly()
