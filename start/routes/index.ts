@@ -24,5 +24,5 @@ import './companies'
 import './auth'
 
 Route.get('/', async () => {
-  return { hello: 'world' }
+  return { SIA_WEB: 'API V1' }
 })
