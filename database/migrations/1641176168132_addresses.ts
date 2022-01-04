@@ -6,7 +6,7 @@ export default class Addresses extends BaseSchema {
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id'),
-        table.string('public_place').notNullable(), //Logradouro
+        table.string('street').notNullable(), //Logradouro
         table.string('neighborhood').notNullable(), //Bairro
         table.string('state').notNullable(), // Estado
         table.string('number', 10),

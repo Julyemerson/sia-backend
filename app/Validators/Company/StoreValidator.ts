@@ -5,8 +5,8 @@ export class StoreValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    company_name: schema.string({ trim: true }),
-    fantasy_name: schema.string({ trim: true }),
+    companyName: schema.string({ trim: true }),
+    fantasyName: schema.string({ trim: true }),
     cnpj: schema.string({ trim: true }, [rules.unique({ table: 'companies', column: 'cnpj' })]),
   })
 

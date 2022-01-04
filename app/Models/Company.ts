@@ -1,5 +1,6 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
+import Address from 'App/Models/Address'
 
 export default class Company extends BaseModel {
   @column({ isPrimary: true })
@@ -13,6 +14,12 @@ export default class Company extends BaseModel {
 
   @column()
   public cnpj: string
+
+  @column()
+  public addressId: number
+
+  @hasMany(() => Address)
+  public address: HasMany<typeof Address>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

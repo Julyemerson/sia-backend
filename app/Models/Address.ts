@@ -7,7 +7,7 @@ export default class Address extends BaseModel {
   public id: number
 
   @column()
-  public publicPlace: string
+  public street: string
 
   @column()
   public neighborhood: string
