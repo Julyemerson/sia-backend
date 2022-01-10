@@ -1,2 +1,2 @@
-export * from './StoreValidator'
-export * from './UpdateValidator'
+export * from './StoreCompanyValidator'
+export * from './UpdateCompanyValidator'

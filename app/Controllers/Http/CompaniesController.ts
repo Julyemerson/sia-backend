@@ -1,6 +1,6 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-import { StoreValidator, UpdateValidator } from 'App/Validators/Company'
+import { StoreCompanyValidator, UpdateCompanyValidator } from 'App/Validators/Company'
 import AddressValidator from 'App/Validators/Address/AddressValidator'
 
 import Company from 'App/Models/Company'
@@ -14,14 +14,13 @@ export default class CompaniesController {
   }
 
   public async store({ request }: HttpContextContract) {
-    const data = await request.validate(StoreValidator)
+    const data = await request.validate(StoreCompanyValidator)
     const dataAddress = await request.validate(AddressValidator)
 
     const company = await Company.create(data)
     await Address.create({ companyId: company.id, ...dataAddress })
 
-    await Company.query().preload('address')
-
+    await company.load('address')
     return company
   }
 
@@ -32,7 +31,7 @@ export default class CompaniesController {
 
   public async update({ params, request }: HttpContextContract) {
     const company = await Company.findOrFail(params.id)
-    const data = await request.validate(UpdateValidator)
+    const data = await request.validate(UpdateCompanyValidator)
 
     company.merge(data)
     await company.save()

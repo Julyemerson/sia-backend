@@ -8,18 +8,18 @@ export default class Addresses extends BaseSchema {
       table.increments('id'),
         table.string('street').notNullable(), //Logradouro
         table.string('neighborhood').notNullable(), //Bairro
-        table.string('state').notNullable(), // Estado
         table.string('number', 10),
+        table.string('city').notNullable(),
+        table.string('state').notNullable(), // Estado
         table.string('reference'),
         table
           .integer('company_id')
           .unsigned()
           .references('id')
           .inTable('companies')
-          .onUpdate('CASCADE')
           .onDelete('CASCADE')
-      table.timestamp('created_at', { useTz: true })
-      table.timestamp('updated_at', { useTz: true })
+          .onUpdate('CASCADE')
+      table.timestamp('created_at', { useTz: true }), table.timestamp('updated_at', { useTz: true })
     })
   }
 

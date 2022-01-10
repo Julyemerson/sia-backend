@@ -15,9 +15,6 @@ export default class Company extends BaseModel {
   @column()
   public cnpj: string
 
-  @column()
-  public addressId: number
-
   @hasMany(() => Address)
   public address: HasMany<typeof Address>
 
