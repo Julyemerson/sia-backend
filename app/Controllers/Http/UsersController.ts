@@ -1,5 +1,5 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { StoreValidator, UpdateValidator } from 'App/Validators/User/'
+import { StoreUserValidator, UpdateUserValidator } from 'App/Validators/User/'
 import User from 'App/Models/User'
 
 export default class UsersController {
@@ -10,7 +10,7 @@ export default class UsersController {
   }
 
   public async store({ request }: HttpContextContract) {
-    const data = await request.validate(StoreValidator)
+    const data = await request.validate(StoreUserValidator)
 
     const user = await User.create(data)
 
@@ -24,7 +24,7 @@ export default class UsersController {
 
   public async update({ params, request }: HttpContextContract) {
     const user = await User.findOrFail(params.id)
-    const data = await request.validate(UpdateValidator)
+    const data = await request.validate(UpdateUserValidator)
 
     user.merge(data)
 
