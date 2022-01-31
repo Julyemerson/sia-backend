@@ -9,6 +9,7 @@ export class StoreAppointmentValidator {
     appointmentDate: schema.date({}, [
       rules.unique({ table: 'appointments', column: 'appointment_date' }),
     ]),
+    obs: schema.string(),
   })
 
   public messages = {}

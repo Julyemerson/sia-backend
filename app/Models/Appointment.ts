@@ -11,7 +11,7 @@ export default class Appointment extends BaseModel {
   @column()
   public userId: number
 
-  @column()
+  @column.dateTime()
   public appointmentDate: DateTime
 
   @column()
