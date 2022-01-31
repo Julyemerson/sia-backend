@@ -22,6 +22,7 @@ import Route from '@ioc:Adonis/Core/Route'
 import './users'
 import './companies'
 import './auth'
+import './appointment'
 
 Route.get('/', async () => {
   return { SIA_WEB: 'API V1' }

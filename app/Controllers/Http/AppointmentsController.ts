@@ -1,5 +1,5 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { StoreAppointmentValidator } from 'App/Validators/appointment'
+import { StoreAppointmentValidator, UpdateAppointmentValidator } from 'App/Validators/appointment'
 import Appointment from 'App/Models/Appointment'
 
 export default class AppointmentsController {
@@ -17,9 +17,25 @@ export default class AppointmentsController {
     return appointment
   }
 
-  public async show({}: HttpContextContract) {}
+  public async show({ params }: HttpContextContract) {
+    const appointment = await Appointment.findOrFail(params.id)
 
-  public async update({}: HttpContextContract) {}
+    return appointment
+  }
 
-  public async destroy({}: HttpContextContract) {}
+  public async update({ params, request }: HttpContextContract) {
+    const appointment = await Appointment.findOrFail(params.id)
+    const data = await request.validate(UpdateAppointmentValidator)
+
+    appointment.merge(data)
+    await appointment.save()
+
+    return appointment
+  }
+
+  public async destroy({ params }: HttpContextContract) {
+    const appointment = await Appointment.findOrFail(params.id)
+
+    await appointment.delete()
+  }
 }
